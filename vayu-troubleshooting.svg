@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 760">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="36" fill="white" font-size="16" font-weight="700">VaYu 启动故障排查流程 · Vayu 1.1</text>
+  <text x="30" y="56" fill="#94a3b8" font-size="9">报错 0xC000007B → 定位缺 VC++ 2013 x64 → 安装修复</text>
+
+  <!-- Region: 现象 -->
+  <rect x="70" y="80" width="680" height="76" rx="12" fill="none" stroke="#fb7185" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="82" y="96" fill="#fb7185" font-size="9" font-weight="600">阶段 1 · 现象</text>
+
+  <!-- Node 1: start -->
+  <rect x="240" y="110" width="280" height="56" rx="25" fill="#0f172a"/>
+  <rect x="240" y="110" width="280" height="56" rx="25" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="380" y="134" fill="white" font-size="11" font-weight="600" text-anchor="middle">双击启动 vayu.exe</text>
+  <text x="380" y="150" fill="#94a3b8" font-size="9" text-anchor="middle">看起来一切正常，然后就没了</text>
+
+  <line x1="380" y1="166" x2="380" y2="190" stroke="#64748b" marker-end="url(#arrow)"/>
+
+  <!-- Node 2: symptom -->
+  <rect x="240" y="196" width="280" height="64" rx="6" fill="#0f172a"/>
+  <rect x="240" y="196" width="280" height="64" rx="6" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="380" y="220" fill="white" font-size="11" font-weight="600" text-anchor="middle">程序秒退，报错 0xC000007B</text>
+  <text x="380" y="238" fill="#94a3b8" font-size="9" text-anchor="middle">STATUS_INVALID_IMAGE_FORMAT · 加载失败</text>
+
+  <line x1="380" y1="260" x2="380" y2="284" stroke="#64748b" marker-end="url(#arrow)"/>
+
+  <!-- Region: 定位 -->
+  <rect x="70" y="290" width="680" height="76" rx="12" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="82" y="306" fill="#22d3ee" font-size="9" font-weight="600">阶段 2 · 定位根因</text>
+
+  <!-- Node 3: check -->
+  <rect x="240" y="320" width="280" height="64" rx="6" fill="#0f172a"/>
+  <rect x="240" y="320" width="280" height="64" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="380" y="344" fill="white" font-size="11" font-weight="600" text-anchor="middle">检查 DLL 依赖</text>
+  <text x="380" y="362" fill="#94a3b8" font-size="9" text-anchor="middle">缺 msvcr120.dll / msvcp120.dll · 自带的是 32 位</text>
+
+  <line x1="380" y1="384" x2="380" y2="408" stroke="#64748b" marker-end="url(#arrow)"/>
+
+  <!-- Node 4: decision -->
+  <g transform="translate(380, 444)">
+    <polygon points="0,-35 70,0 0,35 -70,0" fill="#0f172a"/>
+    <polygon points="0,-35 70,0 0,35 -70,0" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text y="0" fill="white" font-size="10" font-weight="600" text-anchor="middle">已安装 VC++ 2013 x64？</text>
+    <text y="16" fill="#94a3b8" font-size="8" text-anchor="middle">System32 有 msvcr120.dll？</text>
+  </g>
+
+  <!-- No: main path down -->
+  <line x1="380" y1="479" x2="380" y2="510" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <text x="392" y="496" fill="#34d399" font-size="8">否</text>
+
+  <!-- Region: 修复 -->
+  <rect x="70" y="516" width="680" height="76" rx="12" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="82" y="532" fill="#34d399" font-size="9" font-weight="600">阶段 3 · 修复</text>
+
+  <!-- Node 5: fix -->
+  <rect x="240" y="546" width="280" height="64" rx="6" fill="#0f172a"/>
+  <rect x="240" y="546" width="280" height="64" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="380" y="570" fill="white" font-size="11" font-weight="600" text-anchor="middle">安装 vc_redist.x64.exe</text>
+  <text x="380" y="588" fill="#94a3b8" font-size="9" text-anchor="middle">Microsoft Visual C++ 2013 Redistributable (x64)</text>
+
+  <line x1="380" y1="610" x2="380" y2="634" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+
+  <!-- Node 6: end -->
+  <rect x="240" y="640" width="280" height="56" rx="25" fill="#0f172a"/>
+  <rect x="240" y="640" width="280" height="56" rx="25" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="380" y="664" fill="white" font-size="11" font-weight="600" text-anchor="middle">重新启动 → 正常运行</text>
+  <text x="380" y="680" fill="#94a3b8" font-size="9" text-anchor="middle">0xC000007B 消失</text>
+
+  <!-- Yes: branch right -->
+  <line x1="450" y1="444" x2="580" y2="444" stroke="#fb7185" stroke-dasharray="5,3" marker-end="url(#arrow-rose)"/>
+  <text x="500" y="435" fill="#fb7185" font-size="8">是</text>
+  <rect x="586" y="412" width="170" height="64" rx="6" fill="#0f172a"/>
+  <rect x="586" y="412" width="170" height="64" rx="6" fill="rgba(136,19,55,0.25)" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="671" y="436" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">检查其他原因</text>
+  <text x="671" y="452" fill="#94a3b8" font-size="8" text-anchor="middle">本次未涉及</text>
+
+  <text x="380" y="732" fill="#94a3b8" font-size="8" text-anchor="middle">根因：缺少 Microsoft Visual C++ 2013 x64 运行库（msvcr120.dll）</text>
+</svg>
